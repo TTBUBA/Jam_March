@@ -4,7 +4,7 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float SensX;
     [SerializeField] private float SensY;
-
+    [SerializeField] private Transform Player;
     float Xrotation;
     float Yrotation;
 
@@ -23,6 +23,6 @@ public class CameraMovement : MonoBehaviour
         Yrotation -= MouseY;
 
         Yrotation = Mathf.Clamp(Yrotation, -90f, 90f);
-        transform.rotation = Quaternion.Euler(Yrotation, Xrotation, 0f);
+        Player.rotation = Quaternion.Euler(Yrotation, Xrotation, 0f);
     }
 }

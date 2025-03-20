@@ -19,7 +19,7 @@ public class MovementPlayer : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 direction = new Vector3(horizontal, 0, vertical);
+        Vector3 direction = transform.TransformDirection(horizontal, 0 , vertical);
         if (direction.magnitude > 1f)
         {
             direction.Normalize();
