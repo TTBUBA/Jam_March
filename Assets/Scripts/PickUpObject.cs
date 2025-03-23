@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 public class PickUpObject : MonoBehaviour
 {
     [SerializeField] private Transform CameraTransform;
@@ -8,10 +8,14 @@ public class PickUpObject : MonoBehaviour
     [SerializeField] private LayerMask pickupLayerMusk;
     [SerializeField] private Transform PointGrabTransform;
     [SerializeField] private InputActionReference interaction,use,drop;
+    [SerializeField] private GameObject UiPickUpPanel;
+    [SerializeField] private TextMeshProUGUI TextPickUp;
+    [SerializeField] private float RadiusRayCast;
+    [SerializeField] private float DistanceRayCast;
     private ObjectCatch ObjectCatch;
     Ray ray;
     RaycastHit hit;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         interaction.action.performed += Interact;
@@ -21,10 +25,13 @@ public class PickUpObject : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext context)
     {
+
         if (Physics.Raycast(CameraTransform.transform.position, CameraTransform.transform.forward, out RaycastHit raycastHit, DistanceHit, pickupLayerMusk))
         {
             if (raycastHit.transform.TryGetComponent(out ObjectCatch objectCatch))
             {
+                UiPickUpPanel.SetActive(true);
+                TextPickUp.text = "Press Q drop";
                 objectCatch.Grab(PointGrabTransform);
                 ObjectCatch = objectCatch;
             }
@@ -38,12 +45,26 @@ public class PickUpObject : MonoBehaviour
 
     private void Drop(InputAction.CallbackContext context)
     {
+        TextPickUp.text = "Press E to PickUp";
         ObjectCatch.Drop();
+        ObjectCatch = null;
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        Debug.DrawRay(CameraTransform.transform.position, CameraTransform.transform.forward * DistanceHit, Color.red);
+    {
+        
+        if (Physics.Raycast(CameraTransform.transform.position, CameraTransform.transform.forward, out RaycastHit raycastHit, DistanceHit, pickupLayerMusk))
+        {
+            if (raycastHit.transform.TryGetComponent(out ObjectCatch objectCatch))
+            {
+                UiPickUpPanel.SetActive(true);
+            }
+            else
+            {
+                UiPickUpPanel.SetActive(false);
+            }
+        }
+        
     }
 }
