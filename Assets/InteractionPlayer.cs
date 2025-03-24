@@ -14,7 +14,7 @@ public class InteractionPlayer : MonoBehaviour
             UseTrash();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && IsCollision)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             DropTrash();
         }
