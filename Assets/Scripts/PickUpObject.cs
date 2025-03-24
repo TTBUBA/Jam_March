@@ -19,7 +19,7 @@ public class PickUpObject : MonoBehaviour
     void Start()
     {
         interaction.action.performed += Interact;
-        use.action.performed += Use;
+        //use.action.performed += Use;
         drop.action.performed += Drop;
     }
 
@@ -38,11 +38,12 @@ public class PickUpObject : MonoBehaviour
         }
     }
 
+    /*
     private void Use(InputAction.CallbackContext context)
     {
         ObjectCatch.Use();
     }
-
+    */
     private void Drop(InputAction.CallbackContext context)
     {
         TextPickUp.text = "Press E to PickUp";
