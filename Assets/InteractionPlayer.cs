@@ -9,12 +9,12 @@ public class InteractionPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && IsCollision)
         {
             UseTrash();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && IsCollision)
         {
             DropTrash();
         }
