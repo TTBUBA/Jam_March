@@ -7,7 +7,7 @@ public class InteractionPlayer : MonoBehaviour
     [SerializeField] private Transform TransformPointTrash;
     private bool IsCollision;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) && IsCollision)
         {
