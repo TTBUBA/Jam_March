@@ -48,6 +48,7 @@ public class ObjectCatch : MonoBehaviour
         {
             this.gameObject.transform.SetParent(Trash.transform);
             StartCoroutine(DisactivePhysics());
+            GameManager.instance.CountObjectPickUp += 1;
         }
     }
 
