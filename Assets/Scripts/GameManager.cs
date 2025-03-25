@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Text_CountObject;
     public int CountObjectPickUp;
     public int MaxObjectPickUp;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         instance = this;
